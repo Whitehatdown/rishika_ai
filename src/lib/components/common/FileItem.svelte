@@ -50,7 +50,7 @@
 			}
 		}}
 	>
-		<div class="p-4 py-[1.1rem] bg-red-400 text-white rounded-l-xl">
+		<div class="p-4 py-[1.1rem] bg-[#000847] text-white rounded-l-xl">
 			{#if status === 'processed'}
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +60,7 @@
 				>
 					<path
 						fill-rule="evenodd"
-						d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z"
+						d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm3-4c-.223-1.31-1.622-2.5-3-2.5s-2.777 1.19-3 2.5H7a8.026 8.026 0 0 1 10 0h-2zm-6-3a8.025 8.025 0 0 1 2-1.464V11c-1.378-.746-2.777-2-3-2H7a8.026 8.026 0 0 1 0 4h2zm6-4c.223 1.31 1.622 2.5 3 2.5s2.777-1.19 3-2.5H17a8.025 8.025 0 0 1-2-1.464V11c1.378.746 2.777 2 3 2h2a8.026 8.026 0 0 1 0-4h-2z"
 						clip-rule="evenodd"
 					/>
 					<path
@@ -73,7 +73,8 @@
 					fill="currentColor"
 					viewBox="0 0 24 24"
 					xmlns="http://www.w3.org/2000/svg"
-					><style>
+				>
+					<style>
 						.spinner_qM83 {
 							animation: spinner_8HQG 1.05s infinite;
 						}
@@ -84,8 +85,7 @@
 							animation-delay: 0.2s;
 						}
 						@keyframes spinner_8HQG {
-							0%,
-							57.14% {
+							0%, 57.14% {
 								animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 1);
 								transform: translate(0);
 							}
@@ -97,15 +97,14 @@
 								transform: translate(0);
 							}
 						}
-					</style><circle class="spinner_qM83" cx="4" cy="12" r="2.5" /><circle
-						class="spinner_qM83 spinner_oXPr"
-						cx="12"
-						cy="12"
-						r="2.5"
-					/><circle class="spinner_qM83 spinner_ZTLf" cx="20" cy="12" r="2.5" /></svg
-				>
+					</style>
+					<circle class="spinner_qM83" cx="4" cy="12" r="2.5" />
+					<circle class="spinner_qM83 spinner_oXPr" cx="12" cy="12" r="2.5" />
+					<circle class="spinner_qM83 spinner_ZTLf" cx="20" cy="12" r="2.5" />
+				</svg>
 			{/if}
 		</div>
+
 
 		<div class="flex flex-col justify-center -space-y-0.5 pl-1.5 pr-4 w-full">
 			<div class=" dark:text-gray-100 text-sm font-medium line-clamp-1 mb-1">

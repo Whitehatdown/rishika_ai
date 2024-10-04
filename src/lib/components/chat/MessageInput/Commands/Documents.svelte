@@ -23,7 +23,7 @@
 		...($documents.length > 0
 			? [
 					{
-						name: 'All Documents',
+						name: 'Credain Global Intelligence',
 						type: 'collection',
 						title: $i18n.t('All Documents'),
 						collection_names: $documents.map((doc) => doc.collection_name)
