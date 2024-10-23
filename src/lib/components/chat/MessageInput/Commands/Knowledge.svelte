@@ -33,7 +33,7 @@
 					{
 						name: 'Credain Global Intelligence',
 						type: 'collection',
-						title: $i18n.t('All Documents'),
+						title: $i18n.t('Credain Global Intelligence'),
 						collection_names: $documents.map((doc) => doc.collection_name)
 					}
 				]
@@ -60,21 +60,21 @@
 		.sort((a, b) => a.title.localeCompare(b.title));
 
 	$: {
-		// Set selectedIdx to the index of "All Documents" on initialization
-		const allDocsIndex = $documents.findIndex((doc) => doc.collection_name === 'All Documents');
-		if (allDocsIndex !== -1) {
-			selectedIdx = allDocsIndex; // Always select "All Documents" if it exists
+		// Set selectedIdx to the index of "Credain Global Intelligence" on initialization
+		const credainGlobalIndex = $documents.findIndex((doc) => doc.collection_name === 'Credain Global Intelligence');
+		if (credainGlobalIndex !== -1) {
+			selectedIdx = credainGlobalIndex; // Always select "Credain Global Intelligence" if it exists
 		}
 	}
 	onMount(() => {
-		// Select "All Documents" when the component mounts
+		// Select "Credain Global Intelligence" when the component mounts
 		showMenu(); // Open the menu when the component is mounted
 
-		// Find "All Documents" and set it as the default selected item
-		const allDocsIndex = filteredItems.findIndex((item) => item.name === 'All Documents');
-		if (allDocsIndex !== -1) {
-			selectedIdx = allDocsIndex;
-			confirmSelect(filteredItems[allDocsIndex]); // Automatically select "All Documents"
+		// Find "Credain Global Intelligence" and set it as the default selected item
+		const credainGlobalIndex = filteredItems.findIndex((item) => item.name === 'Credain Global Intelligence');
+		if (credainGlobalIndex !== -1) {
+			selectedIdx = credainGlobalIndex;
+			confirmSelect(filteredItems[credainGlobalIndex]); // Automatically select "Credain Global Intelligence"
 		}
 	});
 
@@ -82,17 +82,17 @@
 		command = ''; // Clear the command to show the menu by default
 		filteredItems = [...filteredCollections, ...filteredDocs]; // Ensure filteredItems is set
 
-		// Reset selectedIdx to "All Documents"
-		selectedIdx = filteredItems.findIndex((item) => item.name === 'All Documents');
+		// Reset selectedIdx to "Credain Global Intelligence"
+		selectedIdx = filteredItems.findIndex((item) => item.name === 'Credain Global Intelligence');
 		if (selectedIdx === -1) selectedIdx = 0; // Fallback to first item if not found
 	};
 
 	$: filteredItems = [...filteredCollections, ...filteredDocs];
 
 	$: if (filteredItems.length > 0) {
-		// Ensure "All Documents" is selected in filteredItems
-		const allDocsIndex = filteredItems.findIndex((item) => item.name === 'All Documents');
-		selectedIdx = allDocsIndex !== -1 ? allDocsIndex : 0; // Set to "All Documents" or default to 0
+		// Ensure "Credain Global Intelligence" is selected in filteredItems
+		const credainGlobalIndex = filteredItems.findIndex((item) => item.name === 'Credain Global Intelligence');
+		selectedIdx = credainGlobalIndex !== -1 ? credainGlobalIndex : 0; // Set to "Credain Global Intelligence" or default to 0
 	}
 
 	type ObjectWithName = {
@@ -286,6 +286,7 @@
 								const url = prompt.split(' ')?.at(0)?.substring(1);
 								if (isValidHttpUrl(url)) {
 									confirmSelectWeb(url);
+									console.log('URL:', url);
 								} else {
 									toast.error(
 										$i18n.t(
