@@ -1,52 +1,48 @@
 <script lang="ts">
 	import { createEventDispatcher, getContext } from 'svelte';
+	import { formatFileSize } from '$lib/utils';
+
+	import FileItemModal from './FileItemModal.svelte';
+	import GarbageBin from '../icons/GarbageBin.svelte';
+	import Spinner from './Spinner.svelte';
 
 	const i18n = getContext('i18n');
 	const dispatch = createEventDispatcher();
 
-	export let className = 'w-72';
-	export let colorClassName = 'bg-white dark:bg-gray-800';
+	export let className = 'w-60';
+	export let colorClassName = 'bg-white dark:bg-gray-850 border border-gray-50 dark:border-white/5';
 	export let url: string | null = null;
 
-	export let clickHandler: Function | null = null;
-
 	export let dismissible = false;
-	export let status = 'processed';
+	export let loading = false;
+
+	export let item = null;
+	export let edit = false;
 
 	export let name: string;
 	export let type: string;
 	export let size: number;
 
-	function formatSize(size) {
-		if (size == null) return 'Unknown size';
-		if (typeof size !== 'number' || size < 0) return 'Invalid size';
-		if (size === 0) return '0 B';
-		const units = ['B', 'KB', 'MB', 'GB', 'TB'];
-		let unitIndex = 0;
-
-		while (size >= 1024 && unitIndex < units.length - 1) {
-			size /= 1024;
-			unitIndex++;
-		}
-		return `${size.toFixed(1)} ${units[unitIndex]}`;
-	}
+	let showModal = false;
 </script>
 
-<div class="relative group">
-	<button
-		class="h-14 {className} flex items-center space-x-3 {colorClassName} rounded-xl border border-gray-100 dark:border-gray-800 text-left"
-		type="button"
-		on:click={async () => {
-			if (clickHandler === null) {
-				if (url) {
-					if (type === 'file') {
-						window.open(`${url}/content`, '_blank').focus();
-					} else {
-						window.open(`${url}`, '_blank').focus();
-					}
+{#if item}
+	<FileItemModal bind:show={showModal} bind:item {edit} />
+{/if}
+
+<button
+	class="relative group p-1.5 {className} flex items-center {colorClassName} rounded-2xl text-left"
+	type="button"
+	on:click={async () => {
+		if (item?.file?.data?.content) {
+			showModal = !showModal;
+		} else {
+			if (url) {
+				if (type === 'file') {
+					window.open(`${url}/content`, '_blank').focus();
+				} else {
+					window.open(`${url}`, '_blank').focus();
 				}
-			} else {
-				clickHandler();
 			}
 		}}
 	>
@@ -133,7 +129,7 @@
 			<button
 				class=" bg-gray-400 text-white border border-white rounded-full group-hover:visible invisible transition"
 				type="button"
-				on:click={() => {
+				on:click|stopPropagation={() => {
 					dispatch('dismiss');
 				}}
 			>
@@ -148,6 +144,15 @@
 					/>
 				</svg>
 			</button>
+
+			<!-- <button
+				class=" p-1 dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 rounded-full group-hover:visible invisible transition"
+				type="button"
+				on:click={() => {
+				}}
+			>
+				<GarbageBin />
+			</button> -->
 		</div>
 	{/if}
-</div>
+</button>
